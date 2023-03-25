@@ -1,7 +1,7 @@
 package com.example.test.config;
 
-import com.example.test.server.mappers.IncomingMessageToSent;
-import com.example.test.server.mappers.TranslatedMessageToOutgoing;
+import com.example.test.server.mappers.IncomingMessageMapper;
+import com.example.test.server.mappers.TranslatedMessageMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -21,17 +21,6 @@ public class AppConfig {
         return new RestTemplate();
     }
 
-    @Bean
-    @Scope(scopeName = "prototype")
-    public IncomingMessageToSent incomingMessageToSent() {
-        return new IncomingMessageToSent();
-    }
-
-    @Bean
-    @Scope(scopeName = "prototype")
-    public TranslatedMessageToOutgoing translatedMessageDTO() {
-        return new TranslatedMessageToOutgoing();
-    }
     @Bean
     @Scope(scopeName = "prototype")
     public Connection connection(Environment environment) {

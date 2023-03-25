@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class RequestWordRepo {
 
     public static final String INSERT_REQUEST =
-            "INSERT INTO REQUEST_WORD VALUES(?, ?, ?)";
+            "INSERT INTO REQUEST_WORD VALUES(?, ?, ?, ?)";
     private final Connection connection;
 
     public RequestWordRepo(@Autowired Connection connection) {
@@ -22,9 +22,10 @@ public class RequestWordRepo {
 
     public void saveWord(RequestWordEntity requestWordEntity) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REQUEST)) {
-            preparedStatement.setLong(1, requestWordEntity.getIdRequest());
-            preparedStatement.setString(2, requestWordEntity.getIncomingWord());
-            preparedStatement.setString(3, requestWordEntity.getTranslatedWord());
+            preparedStatement.setLong(1, requestWordEntity.getId());
+            preparedStatement.setLong(2, requestWordEntity.getIdRequest());
+            preparedStatement.setString(3, requestWordEntity.getIncomingWord());
+            preparedStatement.setString(4, requestWordEntity.getTranslatedWord());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

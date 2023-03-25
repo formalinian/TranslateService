@@ -1,14 +1,20 @@
 package com.example.test.server.entities;
 
 public class RequestWordEntity {
+    private Long id;
     private Long idRequest;
     private String incomingWord;
     private String translatedWord;
 
-    public RequestWordEntity(Long idRequest, String incomingWord, String translatedWord) {
-        this.idRequest = idRequest;
-        this.incomingWord = incomingWord;
-        this.translatedWord = translatedWord;
+    public RequestWordEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getIdRequest() {

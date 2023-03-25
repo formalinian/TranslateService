@@ -9,20 +9,7 @@ public class RequestMessageEntity {
     private String requestTime;
     private String requestIp;
 
-    public RequestMessageEntity(Long id,
-                                String incomingMessage,
-                                String translatedMessage,
-                                String sourceLanguage,
-                                String targetLanguage,
-                                String requestTime,
-                                String requestIp) {
-        this.id = id;
-        this.incomingMessage = incomingMessage;
-        this.translatedMessage = translatedMessage;
-        this.sourceLanguage = sourceLanguage;
-        this.targetLanguage = targetLanguage;
-        this.requestTime = requestTime;
-        this.requestIp = requestIp;
+    public RequestMessageEntity() {
     }
 
     public Long getId() {

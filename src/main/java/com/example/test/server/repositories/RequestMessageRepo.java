@@ -31,7 +31,9 @@ public class RequestMessageRepo {
             preparedStatement.setString(5, requestMessageEntity.getRequestTime());
             preparedStatement.setString(6, requestMessageEntity.getRequestIp());
             preparedStatement.executeUpdate();
-            requestMessageEntity.setId(preparedStatement.getGeneratedKeys().getLong(0));
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            resultSet.next();
+            requestMessageEntity.setId(resultSet.getLong(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }
