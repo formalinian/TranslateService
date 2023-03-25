@@ -1,7 +1,7 @@
 package com.example.test.server.mappers;
 
-import com.example.test.client.dtos.SentDTO;
-import com.example.test.server.dtos.IncomingMessageDTO;
+import com.example.test.client.dto.SentDTO;
+import com.example.test.server.dto.IncomingMessageDTO;
 
 import java.util.List;
 

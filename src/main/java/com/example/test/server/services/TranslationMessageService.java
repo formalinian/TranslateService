@@ -1,10 +1,10 @@
 package com.example.test.server.services;
 
-import com.example.test.client.dtos.SentDTO;
-import com.example.test.client.dtos.TranslatedMessageDTO;
+import com.example.test.client.dto.SentDTO;
+import com.example.test.client.dto.TranslatedMessageDTO;
 import com.example.test.client.services.YaTranslationService;
-import com.example.test.server.dtos.IncomingMessageDTO;
-import com.example.test.server.dtos.OutgoingMessageDTO;
+import com.example.test.server.dto.IncomingMessageDTO;
+import com.example.test.server.dto.OutgoingMessageDTO;
 import com.example.test.server.mappers.IncomingMessageToSent;
 import com.example.test.server.mappers.TranslatedMessageToOutgoing;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.example.test.server.mappers;
 
-import com.example.test.client.dtos.TranslatedMessageDTO;
-import com.example.test.client.dtos.TranslatedWordDTO;
-import com.example.test.server.dtos.OutgoingMessageDTO;
+import com.example.test.client.dto.TranslatedMessageDTO;
+import com.example.test.client.dto.TranslatedWordDTO;
+import com.example.test.server.dto.OutgoingMessageDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

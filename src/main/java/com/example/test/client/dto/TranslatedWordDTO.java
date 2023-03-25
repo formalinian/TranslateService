@@ -1,9 +1,9 @@
-package com.example.test.server.dtos;
+package com.example.test.client.dto;
 
-public class OutgoingMessageDTO {
+public class TranslatedWordDTO {
     private String text;
 
-    public OutgoingMessageDTO() {
+    public TranslatedWordDTO() {
     }
 
     public String getText() {

@@ -1,4 +1,4 @@
-package com.example.test.client.dtos;
+package com.example.test.client.dto;
 
 import java.util.List;
 

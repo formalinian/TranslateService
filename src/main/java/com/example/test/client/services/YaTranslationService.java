@@ -1,7 +1,7 @@
 package com.example.test.client.services;
 
-import com.example.test.client.dtos.SentDTO;
-import com.example.test.client.dtos.TranslatedMessageDTO;
+import com.example.test.client.dto.SentDTO;
+import com.example.test.client.dto.TranslatedMessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

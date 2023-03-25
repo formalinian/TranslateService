@@ -1,4 +1,4 @@
-package com.example.test.server.dtos;
+package com.example.test.server.dto;
 
 public class IncomingMessageDTO {
     private String text;
