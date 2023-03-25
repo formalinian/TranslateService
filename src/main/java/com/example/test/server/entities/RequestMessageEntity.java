@@ -1,7 +1,7 @@
 package com.example.test.server.entities;
 
 public class RequestMessageEntity {
-    private int id;
+    private Long id;
     private String incomingMessage;
     private String translatedMessage;
     private String sourceLanguage;
@@ -9,7 +9,7 @@ public class RequestMessageEntity {
     private String requestTime;
     private String requestIp;
 
-    public RequestMessageEntity(int id,
+    public RequestMessageEntity(Long id,
                                 String incomingMessage,
                                 String translatedMessage,
                                 String sourceLanguage,
@@ -25,11 +25,11 @@ public class RequestMessageEntity {
         this.requestIp = requestIp;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
