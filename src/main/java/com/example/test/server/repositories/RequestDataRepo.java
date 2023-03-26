@@ -33,7 +33,7 @@ public class RequestDataRepo {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             resultSet.next();
-            requestDataEntity.setId(resultSet.getLong(1));
+            requestDataEntity.setId(resultSet.getLong("ID"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

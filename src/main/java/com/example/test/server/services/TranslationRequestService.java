@@ -5,10 +5,13 @@ import com.example.test.client.dto.TranslatedMessageDTO;
 import com.example.test.client.services.YaTranslationService;
 import com.example.test.server.dto.IncomingMessageDTO;
 import com.example.test.server.dto.OutgoingMessageDTO;
+import com.example.test.server.dto.YaExceptionDTO;
+import com.example.test.server.exceptions.ClientException;
 import com.example.test.server.mappers.SentDtoMapper;
 import com.example.test.server.mappers.OutgoingMessageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 @Service
 public class TranslationRequestService {
@@ -24,9 +27,16 @@ public class TranslationRequestService {
     public OutgoingMessageDTO sendTranslationRequest(IncomingMessageDTO incomingMessage, String requestIpAddress) {
         SentDtoMapper sentDtoMapper = new SentDtoMapper();
         SentDTO sentDTO = sentDtoMapper.transformToSent(incomingMessage);
-        TranslatedMessageDTO translatedMessageDTO = yaTranslationService.sentTranslationRequest(sentDTO);
-        storageService.saveIntoDB(incomingMessage, translatedMessageDTO, sentDTO, requestIpAddress);
+        TranslatedMessageDTO translatedMessageDTO = new TranslatedMessageDTO();
         OutgoingMessageMapper outgoingMessageMapper = new OutgoingMessageMapper();
-        return outgoingMessageMapper.transformToOutgoing(translatedMessageDTO);
+        try {
+            translatedMessageDTO = yaTranslationService.sentTranslationRequest(sentDTO);
+            return outgoingMessageMapper.transformToOutgoing(translatedMessageDTO);
+        } catch (HttpClientErrorException e) {
+            YaExceptionDTO responseBodyAs = e.getResponseBodyAs(YaExceptionDTO.class);
+            throw new ClientException(responseBodyAs.getMessage());
+        } finally {
+            storageService.saveIntoDB(incomingMessage, outgoingMessageMapper.transformToOutgoing(translatedMessageDTO), sentDTO, requestIpAddress);
+        }
     }
 }

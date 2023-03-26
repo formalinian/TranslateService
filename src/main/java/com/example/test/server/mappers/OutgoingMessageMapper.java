@@ -11,7 +11,9 @@ public class OutgoingMessageMapper {
     public OutgoingMessageDTO transformToOutgoing(TranslatedMessageDTO translatedMessageDTO) {
         OutgoingMessageDTO outgoingMessage = new OutgoingMessageDTO();
         List<TranslatedWordDTO> list = translatedMessageDTO.getTranslatedWordDTOS();
-        outgoingMessage.setText(list.stream().map(TranslatedWordDTO::getText).collect(Collectors.joining(" ")));
+        if (list!=null) {
+            outgoingMessage.setText(list.stream().map(TranslatedWordDTO::getText).collect(Collectors.joining(" ")));
+        }
         return  outgoingMessage;
     }
 }
