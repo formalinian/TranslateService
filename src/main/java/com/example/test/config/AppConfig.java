@@ -1,7 +1,5 @@
 package com.example.test.config;
 
-import com.example.test.server.mappers.IncomingMessageMapper;
-import com.example.test.server.mappers.TranslatedMessageMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

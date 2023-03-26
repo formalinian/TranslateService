@@ -7,7 +7,7 @@ import com.example.test.server.dto.OutgoingMessageDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TranslatedMessageMapper {
+public class OutgoingMessageMapper {
     public OutgoingMessageDTO transformToOutgoing(TranslatedMessageDTO translatedMessageDTO) {
         OutgoingMessageDTO outgoingMessage = new OutgoingMessageDTO();
         List<TranslatedWordDTO> list = translatedMessageDTO.getTranslatedWordDTOS();
