@@ -1,13 +1,14 @@
 package com.example.test.server.repositories;
 
+import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestWordEntity;
+import com.example.test.server.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 @Repository
 public class RequestWordRepo {
@@ -28,7 +29,10 @@ public class RequestWordRepo {
             preparedStatement.setString(4, requestWordEntity.getTranslatedWord());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionDTO responseBodyAs = new ExceptionDTO();
+            responseBodyAs.setMessage(e.getClass().getSimpleName());
+            responseBodyAs.setCode(e.getErrorCode());
+            throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
         }
     }
 }

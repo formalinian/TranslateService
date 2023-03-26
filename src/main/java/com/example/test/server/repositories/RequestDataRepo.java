@@ -1,6 +1,8 @@
 package com.example.test.server.repositories;
 
+import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestDataEntity;
+import com.example.test.server.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +37,10 @@ public class RequestDataRepo {
             resultSet.next();
             requestDataEntity.setId(resultSet.getLong("ID"));
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionDTO responseBodyAs = new ExceptionDTO();
+            responseBodyAs.setMessage(e.getClass().getSimpleName());
+            responseBodyAs.setCode(e.getErrorCode());
+            throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
         }
     }
 }

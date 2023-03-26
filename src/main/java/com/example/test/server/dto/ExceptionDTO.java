@@ -1,9 +1,10 @@
 package com.example.test.server.dto;
 
-public class YaExceptionDTO {
+public class ExceptionDTO {
+    private int code;
     private String message;
 
-    public YaExceptionDTO() {
+    public ExceptionDTO() {
     }
 
     public String getMessage() {
@@ -12,5 +13,13 @@ public class YaExceptionDTO {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

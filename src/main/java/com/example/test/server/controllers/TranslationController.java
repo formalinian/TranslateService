@@ -2,8 +2,8 @@ package com.example.test.server.controllers;
 
 import com.example.test.server.dto.IncomingMessageDTO;
 import com.example.test.server.dto.OutgoingMessageDTO;
-import com.example.test.server.dto.YaExceptionDTO;
-import com.example.test.server.exceptions.ClientException;
+import com.example.test.server.dto.ExceptionDTO;
+import com.example.test.server.exceptions.CustomException;
 import com.example.test.server.services.TranslationRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,11 @@ public class TranslationController {
         return ResponseEntity.ok(translationRequestService.sendTranslationRequest(incomingMessage, ipAddress));
     }
 
-    @ExceptionHandler(ClientException.class)
-    public ResponseEntity<YaExceptionDTO> method(ClientException clientException) {
-        YaExceptionDTO yaExceptionDTO = new YaExceptionDTO();
-        yaExceptionDTO.setMessage(clientException.getMessage());
-        return new ResponseEntity<>(yaExceptionDTO, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ExceptionDTO> exceptionHandler(CustomException customException) {
+        ExceptionDTO exceptionDTO = new ExceptionDTO();
+        exceptionDTO.setCode(customException.getCode());
+        exceptionDTO.setMessage(customException.getMessage());
+        return new ResponseEntity<>(exceptionDTO, HttpStatus.BAD_REQUEST);
     }
 }
