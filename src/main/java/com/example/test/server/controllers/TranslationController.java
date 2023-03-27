@@ -1,15 +1,18 @@
 package com.example.test.server.controllers;
 
+import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.dto.IncomingMessageDTO;
 import com.example.test.server.dto.OutgoingMessageDTO;
-import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.exceptions.CustomException;
 import com.example.test.server.services.TranslationRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TranslationController {

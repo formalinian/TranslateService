@@ -7,7 +7,7 @@ import com.example.test.server.entities.RequestDataEntity;
 import java.time.LocalDateTime;
 
 public class RequestDataMapper {
-    public RequestDataEntity transformToReqDataEntity(IncomingMessageDTO incomingMessageDTO, OutgoingMessageDTO outgoingMessageDTO, String ipAddress){
+    public RequestDataEntity transformToReqDataEntity(IncomingMessageDTO incomingMessageDTO, OutgoingMessageDTO outgoingMessageDTO, String ipAddress) {
         RequestDataEntity requestDataEntity = new RequestDataEntity();
         requestDataEntity.setIncomingMessage(incomingMessageDTO.getText());
         requestDataEntity.setTranslatedMessage(outgoingMessageDTO.getText());

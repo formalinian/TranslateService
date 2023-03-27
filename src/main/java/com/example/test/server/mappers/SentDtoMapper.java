@@ -11,6 +11,6 @@ public class SentDtoMapper {
         sentDTO.setTexts(List.of(incomingMessage.getText().split(" ")));
         sentDTO.setSourceLanguageCode(incomingMessage.getSourceLanguageCode());
         sentDTO.setTargetLanguageCode(incomingMessage.getTargetLanguageCode());
-        return  sentDTO;
+        return sentDTO;
     }
 }

@@ -24,7 +24,7 @@ public class RequestDataRepo {
         this.connection = connection;
     }
 
-    public void saveMessage(RequestDataEntity requestDataEntity){
+    public void saveMessage(RequestDataEntity requestDataEntity) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REQUEST, Statement.RETURN_GENERATED_KEYS);) {
             preparedStatement.setString(1, requestDataEntity.getIncomingMessage());
             preparedStatement.setString(2, requestDataEntity.getTranslatedMessage());
