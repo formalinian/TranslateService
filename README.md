@@ -35,18 +35,32 @@
 ```
 {
   "code": 400,
-  "message": "JdbcSQLSyntaxErrorException"
+  "message": "texts are empty"
+}
+```
+
+```
+{
+  "code": 400,
+  "message": "unsupported source_language_code: rus"
+}
+```
+
+```
+{
+  "code": 400,
+  "message": "unsupported target_language_code: eng"
 }
 ```
 
 #### Сборка Docker Image:
 
 ```
-
+docker build -t test .
 ```
 
 #### Запуск Docker Image:
 
 ```
-
+docker run -p 8080:8080 -e YA_TOKEN="your token" test:latest
 ```
