@@ -4,6 +4,7 @@ import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestDataEntity;
 import com.example.test.server.exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -39,7 +40,7 @@ public class RequestDataRepo {
         } catch (SQLException e) {
             ExceptionDTO responseBodyAs = new ExceptionDTO();
             responseBodyAs.setMessage(e.getClass().getSimpleName());
-            responseBodyAs.setCode(e.getErrorCode());
+            responseBodyAs.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
             throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
         }
     }

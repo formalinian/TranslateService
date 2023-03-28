@@ -9,7 +9,9 @@ import com.example.test.server.dto.OutgoingMessageDTO;
 import com.example.test.server.exceptions.CustomException;
 import com.example.test.server.mappers.OutgoingMessageMapper;
 import com.example.test.server.mappers.SentDtoMapper;
+import jakarta.servlet.http.HttpServlet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -34,7 +36,7 @@ public class TranslationRequestService {
             return outgoingMessageMapper.transformToOutgoing(translatedMessageDTO);
         } catch (HttpClientErrorException e) {
             ExceptionDTO responseBodyAs = e.getResponseBodyAs(ExceptionDTO.class);
-            throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
+            throw new CustomException(responseBodyAs.getMessage(), HttpStatus.BAD_REQUEST.value());
         } finally {
             storageService.saveIntoDB(incomingMessage, outgoingMessageMapper.transformToOutgoing(translatedMessageDTO), sentDTO, requestIpAddress);
         }
