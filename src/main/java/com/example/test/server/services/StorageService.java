@@ -19,11 +19,17 @@ import java.util.List;
 public class StorageService {
     private final RequestDataRepo requestDataRepo;
     private final RequestWordRepo requestWordRepo;
+    private final RequestWordMapper requestWordMapper;
+    private final RequestDataMapper requestDataMapper;
 
     public StorageService(@Autowired RequestDataRepo requestDataRepo,
-                          @Autowired RequestWordRepo requestWordRepo) {
+                          @Autowired RequestWordRepo requestWordRepo,
+                          @Autowired RequestDataMapper requestDataMapper,
+                          @Autowired RequestWordMapper requestWordMapper) {
         this.requestDataRepo = requestDataRepo;
         this.requestWordRepo = requestWordRepo;
+        this.requestDataMapper = requestDataMapper;
+        this.requestWordMapper = requestWordMapper;
     }
 
     public void saveIntoDB(IncomingMessageDTO incomingMessageDTO,

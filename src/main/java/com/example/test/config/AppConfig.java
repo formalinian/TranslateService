@@ -1,7 +1,8 @@
 package com.example.test.config;
 
-import com.example.test.client.dto.SentDTO;
 import com.example.test.server.mappers.OutgoingMessageMapper;
+import com.example.test.server.mappers.RequestDataMapper;
+import com.example.test.server.mappers.RequestWordMapper;
 import com.example.test.server.mappers.SentDtoMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,6 @@ public class AppConfig {
             throw new RuntimeException(e);
         }
     }
-
     @Bean
     @Scope(scopeName = "prototype")
     public SentDtoMapper sentDtoMapper(){return new SentDtoMapper();}
@@ -41,4 +41,12 @@ public class AppConfig {
     @Bean
     @Scope(scopeName = "prototype")
     public OutgoingMessageMapper outgoingMessageMapper(){return new OutgoingMessageMapper();}
+
+    @Bean
+    @Scope(scopeName = "prototype")
+    public RequestDataMapper requestDataMapper(){return new RequestDataMapper();}
+
+    @Bean
+    @Scope(scopeName = "prototype")
+    public RequestWordMapper requestWordMapper(){return new RequestWordMapper();}
 }
