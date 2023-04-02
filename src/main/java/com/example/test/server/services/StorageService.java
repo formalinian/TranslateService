@@ -36,7 +36,6 @@ public class StorageService {
                            OutgoingMessageDTO outgoingMessageDTO,
                            SentDTO sentDTO,
                            String ipAddress) {
-        RequestDataMapper requestDataMapper = new RequestDataMapper();
         RequestDataEntity requestDataEntity = requestDataMapper.transformToReqDataEntity(incomingMessageDTO, outgoingMessageDTO, ipAddress);
         requestDataRepo.saveMessage(requestDataEntity);
         List<String> words = new ArrayList<>();
@@ -44,7 +43,6 @@ public class StorageService {
             words = Arrays.stream(outgoingMessageDTO.getText().split(" ")).toList();
         }
         for (int i = 0; i < words.size(); i++) {
-            RequestWordMapper requestWordMapper = new RequestWordMapper();
             requestWordRepo.saveWord(requestWordMapper.transformToReqWordEntity(
                     (long) i + 1,
                     requestDataEntity.getId(),
