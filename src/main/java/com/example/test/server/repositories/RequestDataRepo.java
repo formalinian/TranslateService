@@ -3,6 +3,7 @@ package com.example.test.server.repositories;
 import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestDataEntity;
 import com.example.test.server.exceptions.CustomException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 
 @Repository
+@RequiredArgsConstructor
 public class RequestDataRepo {
 
     public static final String INSERT_REQUEST =
@@ -20,10 +22,6 @@ public class RequestDataRepo {
                     "REQUEST_TIME, " +
                     "REQUEST_IP) VALUES(?, ?, ?, ?, ?, ?)";
     private final Connection connection;
-
-    public RequestDataRepo(@Autowired Connection connection) {
-        this.connection = connection;
-    }
 
     public void saveMessage(RequestDataEntity requestDataEntity) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REQUEST, Statement.RETURN_GENERATED_KEYS);) {

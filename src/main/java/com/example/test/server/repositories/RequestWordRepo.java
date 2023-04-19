@@ -3,6 +3,7 @@ package com.example.test.server.repositories;
 import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestWordEntity;
 import com.example.test.server.exceptions.CustomException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,15 +12,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @Repository
+@RequiredArgsConstructor
 public class RequestWordRepo {
 
     public static final String INSERT_REQUEST =
             "INSERT INTO REQUEST_WORD VALUES(?, ?, ?, ?)";
     private final Connection connection;
-
-    public RequestWordRepo(@Autowired Connection connection) {
-        this.connection = connection;
-    }
 
     public void saveWord(RequestWordEntity requestWordEntity) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REQUEST)) {

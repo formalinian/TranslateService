@@ -16,7 +16,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 @Service
 @RequiredArgsConstructor
-public class TranslationRequestService {
+public class TranslationService {
     private final TranslationClient<TranslatedMessageDTO, SentDTO> translationClient;
     private final StorageService storageService;
     private final SentDtoMapper sentDtoMapper;
