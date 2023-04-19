@@ -8,6 +8,7 @@ import com.example.test.server.mappers.RequestDataMapper;
 import com.example.test.server.mappers.RequestWordMapper;
 import com.example.test.server.repositories.RequestDataRepo;
 import com.example.test.server.repositories.RequestWordRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +17,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StorageService {
     private final RequestDataRepo requestDataRepo;
     private final RequestWordRepo requestWordRepo;
     private final RequestWordMapper requestWordMapper;
     private final RequestDataMapper requestDataMapper;
-
-    public StorageService(@Autowired RequestDataRepo requestDataRepo,
-                          @Autowired RequestWordRepo requestWordRepo,
-                          @Autowired RequestDataMapper requestDataMapper,
-                          @Autowired RequestWordMapper requestWordMapper) {
-        this.requestDataRepo = requestDataRepo;
-        this.requestWordRepo = requestWordRepo;
-        this.requestDataMapper = requestDataMapper;
-        this.requestWordMapper = requestWordMapper;
-    }
 
     public void saveIntoDB(IncomingMessageDTO incomingMessageDTO,
                            OutgoingMessageDTO outgoingMessageDTO,

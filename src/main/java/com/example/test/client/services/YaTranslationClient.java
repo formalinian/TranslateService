@@ -2,7 +2,7 @@ package com.example.test.client.services;
 
 import com.example.test.client.dto.SentDTO;
 import com.example.test.client.dto.TranslatedMessageDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,17 +11,14 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Service
-public class YaTranslationService {
+@RequiredArgsConstructor
+public class YaTranslationClient implements TranslationClient<TranslatedMessageDTO, SentDTO> {
     private final RestTemplate restTemplate;
     @Value("${yandex.token}")
     private String yandexToken;
 
     @Value("${yandex.translate}")
     private String yandexURL;
-
-    public YaTranslationService(@Autowired RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     public TranslatedMessageDTO sentTranslationRequest(SentDTO sentDTO) {
         HttpHeaders headers = new HttpHeaders();
