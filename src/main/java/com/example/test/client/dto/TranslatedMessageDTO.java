@@ -1,22 +1,16 @@
 package com.example.test.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class TranslatedMessageDTO {
+
     @JsonSetter("translations")
     private List<TranslatedWordDTO> translatedWordDTOS;
-
-    public TranslatedMessageDTO() {
-    }
-
-    public List<TranslatedWordDTO> getTranslatedWordDTOS() {
-        return translatedWordDTOS;
-    }
-
-    public void setTranslatedWordDTOS(List<TranslatedWordDTO> translatedWordDTOS) {
-        this.translatedWordDTOS = translatedWordDTOS;
-    }
 
 }
