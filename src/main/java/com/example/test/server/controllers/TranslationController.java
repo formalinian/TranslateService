@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+
 @RestController
 @RequiredArgsConstructor
 public class TranslationController {
@@ -22,7 +24,7 @@ public class TranslationController {
 
     @PostMapping(path = "/translate")
     public ResponseEntity<OutgoingMessageDTO> getTranslatedMessage(@RequestBody IncomingMessageDTO incomingMessage,
-                                                                   HttpServletRequest request) {
+                                                                   HttpServletRequest request) throws SQLException {
         String ipAddress = request.getRemoteAddr();
         return ResponseEntity.ok(translationService.sendTranslationRequest(incomingMessage, ipAddress));
     }

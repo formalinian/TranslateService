@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.sql.SQLException;
+
 @Service
 @RequiredArgsConstructor
 public class TranslationService {
@@ -22,7 +24,7 @@ public class TranslationService {
     private final SentDtoMapper sentDtoMapper;
     private final OutgoingMessageMapper outgoingMessageMapper;
 
-    public OutgoingMessageDTO sendTranslationRequest(IncomingMessageDTO incomingMessage, String requestIpAddress) {
+    public OutgoingMessageDTO sendTranslationRequest(IncomingMessageDTO incomingMessage, String requestIpAddress) throws SQLException {
         SentDTO sentDTO = sentDtoMapper.transformToSent(incomingMessage);
         TranslatedMessageDTO translatedMessageDTO = new TranslatedMessageDTO();
         try {
