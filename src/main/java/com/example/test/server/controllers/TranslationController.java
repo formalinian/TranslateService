@@ -3,11 +3,10 @@ package com.example.test.server.controllers;
 import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.dto.IncomingMessageDTO;
 import com.example.test.server.dto.OutgoingMessageDTO;
-import com.example.test.server.exceptions.CustomException;
+import com.example.test.server.exceptions.ClientException;
 import com.example.test.server.services.TranslationService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,11 +28,11 @@ public class TranslationController {
         return ResponseEntity.ok(translationService.sendTranslationRequest(incomingMessage, ipAddress));
     }
 
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<ExceptionDTO> exceptionHandler(CustomException customException) {
+    @ExceptionHandler(ClientException.class)
+    public ResponseEntity<ExceptionDTO> exceptionHandler(ClientException clientException) {
         ExceptionDTO exceptionDTO = new ExceptionDTO();
-        exceptionDTO.setCode(customException.getCode());
-        exceptionDTO.setMessage(customException.getMessage());
+        exceptionDTO.setCode(clientException.getCode());
+        exceptionDTO.setMessage(clientException.getMessage());
         return new ResponseEntity<>(exceptionDTO, HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,9 +1,6 @@
 package com.example.test.config;
 
-import com.example.test.server.mappers.OutgoingMessageMapper;
-import com.example.test.server.mappers.RequestDataMapper;
-import com.example.test.server.mappers.RequestWordMapper;
-import com.example.test.server.mappers.SentDtoMapper;
+import com.example.test.server.mappers.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -49,4 +46,8 @@ public class AppConfig {
     @Bean
     @Scope(scopeName = "prototype")
     public RequestWordMapper requestWordMapper(){return new RequestWordMapper();}
+
+    @Bean
+    @Scope(scopeName = "prototype")
+    public SplitSentDtoMapper splitSentDto(){return new SplitSentDtoMapper();}
 }

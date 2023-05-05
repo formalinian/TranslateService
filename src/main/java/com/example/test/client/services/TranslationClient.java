@@ -5,4 +5,5 @@ import com.example.test.client.dto.TranslatedMessageDTO;
 
 public interface TranslationClient<T, S> {
     T sentTranslationRequest(S sentDTO);
+    T sentMultiRequest(S sentDTO);
 }

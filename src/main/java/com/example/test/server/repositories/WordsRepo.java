@@ -2,7 +2,7 @@ package com.example.test.server.repositories;
 
 import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestWordEntity;
-import com.example.test.server.exceptions.CustomException;
+import com.example.test.server.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +34,7 @@ public class WordsRepo {
             ExceptionDTO responseBodyAs = new ExceptionDTO();
             responseBodyAs.setMessage(e.getClass().getSimpleName());
             responseBodyAs.setCode(e.getErrorCode());
-            throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
+            throw new ClientException(responseBodyAs.getMessage(), responseBodyAs.getCode());
         } catch (Exception e){
             connection.rollback();
         }

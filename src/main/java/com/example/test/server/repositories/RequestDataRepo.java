@@ -2,9 +2,8 @@ package com.example.test.server.repositories;
 
 import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.entities.RequestDataEntity;
-import com.example.test.server.exceptions.CustomException;
+import com.example.test.server.exceptions.ClientException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -39,7 +38,7 @@ public class RequestDataRepo {
             ExceptionDTO responseBodyAs = new ExceptionDTO();
             responseBodyAs.setMessage(e.getClass().getSimpleName());
             responseBodyAs.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            throw new CustomException(responseBodyAs.getMessage(), responseBodyAs.getCode());
+            throw new ClientException(responseBodyAs.getMessage(), responseBodyAs.getCode());
         }
     }
 }
