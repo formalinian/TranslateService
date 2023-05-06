@@ -3,6 +3,7 @@ package com.example.test.client.services;
 import com.example.test.client.dto.SentDTO;
 import com.example.test.client.dto.TranslatedMessageDTO;
 import com.example.test.client.dto.TranslatedWordDTO;
+import com.example.test.server.dto.ExceptionDTO;
 import com.example.test.server.mappers.SplitSentDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -63,7 +64,7 @@ public class YaMultithreadingTranslationClient implements TranslationClient<Tran
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     } catch (ExecutionException e) {
-                        throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+                        throw (HttpClientErrorException) e.getCause();
                     }
                 }
             }
