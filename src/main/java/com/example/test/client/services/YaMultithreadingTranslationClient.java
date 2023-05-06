@@ -64,6 +64,7 @@ public class YaMultithreadingTranslationClient implements TranslationClient<Tran
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     } catch (ExecutionException e) {
+                        Throwable throwable = e.getCause();
                         throw (HttpClientErrorException) e.getCause();
                     }
                 }

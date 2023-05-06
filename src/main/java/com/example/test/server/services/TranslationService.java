@@ -31,8 +31,9 @@ public class TranslationService {
             return outgoingMessageMapper.transformToOutgoing(translatedMessageDTO);
         } catch (HttpClientErrorException e) {
             ExceptionDTO responseBodyAs = e.getResponseBodyAs(ExceptionDTO.class);
-            assert responseBodyAs != null;
-            throw new ClientException(responseBodyAs.getMessage(), HttpStatus.BAD_REQUEST.value());
+            if (responseBodyAs != null) {
+                throw new ClientException(responseBodyAs.getMessage(), HttpStatus.BAD_REQUEST.value());
+            } else throw new ClientException(e.getMessage(), e.getStatusCode().value());
         } finally {
             storageService.saveIntoDB(incomingMessage, outgoingMessageMapper.transformToOutgoing(translatedMessageDTO), sentDTO, requestIpAddress);
         }
