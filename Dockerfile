@@ -2,7 +2,6 @@ FROM maven:3.6-openjdk-17 AS test
 COPY src /src
 COPY pom.xml /
 ENV YA_TOKEN=$YA_TOKEN
-ARG MULTITHREADING=true
 RUN mvn -f /pom.xml clean package
 
 FROM openjdk:17
