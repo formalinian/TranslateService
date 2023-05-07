@@ -11,13 +11,15 @@ import com.example.test.server.mappers.OutgoingMessageMapper;
 import com.example.test.server.mappers.SentDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import java.sql.SQLException;
 
 @Service
+@Component("SingleThreaded")
 @RequiredArgsConstructor
-public class SingleThreadedTranslationService implements TranslationService<OutgoingMessageDTO, IncomingMessageDTO, String> {
+public class SingleThreadedTranslationService implements TranslationService {
     private final TranslationClient<TranslatedMessageDTO, SentDTO> translationClient;
     private final StorageService storageService;
     private final SentDtoMapper sentDtoMapper;
@@ -35,7 +37,7 @@ public class SingleThreadedTranslationService implements TranslationService<Outg
                 throw new ClientException(responseBodyAs.getMessage(), HttpStatus.BAD_REQUEST.value());
             } else throw new ClientException(e.getMessage(), e.getStatusCode().value());
         } finally {
-            storageService.saveIntoDB(incomingMessage, outgoingMessageMapper.transformToOutgoing(translatedMessageDTO), sentDTO, requestIpAddress);
+            storageService.save(incomingMessage, outgoingMessageMapper.transformToOutgoing(translatedMessageDTO), sentDTO, requestIpAddress);
         }
     }
 }

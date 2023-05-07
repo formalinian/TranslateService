@@ -15,17 +15,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 public class TranslationController {
-    private final TranslationService translationService;
+    private final Map<String, TranslationService> serviceMap;
 
     @PostMapping(path = "/translate")
     public ResponseEntity<OutgoingMessageDTO> getTranslatedMessage(@RequestBody IncomingMessageDTO incomingMessage,
                                                                    HttpServletRequest request) throws SQLException {
-        String ipAddress = request.getRemoteAddr();
-        return ResponseEntity.ok(translationService.sendTranslationRequest(incomingMessage, ipAddress));
+        TranslationService translationService
+                = serviceMap.get("SingleThreaded");
+        return ResponseEntity.ok(translationService.translate(incomingMessage, request.getRemoteAddr()));
+    }
+
+    @PostMapping(path = "/translate/multithreaded")
+    public ResponseEntity<OutgoingMessageDTO> getTranslatedMessageMultithreaded(@RequestBody IncomingMessageDTO incomingMessage,
+                                                                   HttpServletRequest request) throws SQLException {
+        TranslationService translationService
+                = serviceMap.get("Multithreaded");
+        return ResponseEntity.ok(translationService.translate(incomingMessage, request.getRemoteAddr()));
     }
 
     @ExceptionHandler(ClientException.class)

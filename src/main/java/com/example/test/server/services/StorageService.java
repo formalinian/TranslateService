@@ -25,10 +25,10 @@ public class StorageService {
     private final RequestWordMapper requestWordMapper;
     private final RequestDataMapper requestDataMapper;
 
-    public void saveIntoDB(IncomingMessageDTO incomingMessageDTO,
-                           OutgoingMessageDTO outgoingMessageDTO,
-                           SentDTO sentDTO,
-                           String ipAddress) throws SQLException {
+    public void save(IncomingMessageDTO incomingMessageDTO,
+                     OutgoingMessageDTO outgoingMessageDTO,
+                     SentDTO sentDTO,
+                     String ipAddress) throws SQLException {
         RequestDataEntity requestDataEntity = requestDataMapper.transformToReqDataEntity(incomingMessageDTO, outgoingMessageDTO, ipAddress);
         requestDataRepo.saveMessage(requestDataEntity);
         List<String> words = new ArrayList<>();
